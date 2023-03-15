@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Elementary Calculator</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="add">Add</string>
+    <string name="result">Result</string>
 </resources>
