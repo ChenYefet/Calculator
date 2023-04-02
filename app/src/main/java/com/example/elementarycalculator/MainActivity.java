@@ -1,6 +1,5 @@
 package com.example.elementarycalculator;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,14 +7,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity
 {
-    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Locale currentLocale = Locale.ENGLISH;
 
         Button add = findViewById(R.id.add_ButtonObject);
         add.setOnClickListener(v ->
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity
             int firstNumberAsInteger = Integer.parseInt(firstNumber.getText().toString());
             int secondNumberAsInteger = Integer.parseInt(secondNumber.getText().toString());
             int resultAsInteger = firstNumberAsInteger + secondNumberAsInteger;
-            result.setText(String.format("%d", resultAsInteger));
+            result.setText(String.format(currentLocale,"%d", resultAsInteger));
         });
     }
 }
