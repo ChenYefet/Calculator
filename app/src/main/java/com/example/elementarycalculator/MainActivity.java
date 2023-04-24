@@ -15,6 +15,7 @@ import org.mariuszgromada.math.mxparser.Expression;
 
 public class MainActivity extends AppCompatActivity
 {
+    private static boolean calculationJustHappened = false;
     private EditText display;
 
     @Override
@@ -81,96 +82,144 @@ public class MainActivity extends AppCompatActivity
         Button zeroButton = this.findViewById(R.id.zero_Button);
         zeroButton.setOnClickListener(v ->
                 this.updateDisplayText("0"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void oneButton()
     {
         Button oneButton = this.findViewById(R.id.one_Button);
         oneButton.setOnClickListener(v ->
                 this.updateDisplayText("1"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void twoButton()
     {
         Button twoButton = this.findViewById(R.id.two_Button);
         twoButton.setOnClickListener(v ->
                 this.updateDisplayText("2"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void threeButton()
     {
         Button threeButton = this.findViewById(R.id.three_Button);
         threeButton.setOnClickListener(v ->
                 this.updateDisplayText("3"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void fourButton()
     {
         Button fourButton = this.findViewById(R.id.four_Button);
         fourButton.setOnClickListener(v ->
                 this.updateDisplayText("4"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void fiveButton()
     {
         Button fiveButton = this.findViewById(R.id.five_Button);
         fiveButton.setOnClickListener(v ->
                 this.updateDisplayText("5"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void sixButton()
     {
         Button sixButton = this.findViewById(R.id.six_Button);
         sixButton.setOnClickListener(v ->
                 this.updateDisplayText("6"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void sevenButton()
     {
         Button sevenButton = this.findViewById(R.id.seven_Button);
         sevenButton.setOnClickListener(v ->
                 this.updateDisplayText("7"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void eightButton()
     {
         Button eightButton = this.findViewById(R.id.eight_Button);
         eightButton.setOnClickListener(v ->
                 this.updateDisplayText("8"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void nineButton()
     {
         Button nineButton = this.findViewById(R.id.nine_Button);
         nineButton.setOnClickListener(v ->
                 this.updateDisplayText("9"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void decimalPointButton()
     {
         Button decimalPointButton = this.findViewById(R.id.decimal_point_Button);
         decimalPointButton.setOnClickListener(v ->
                 this.updateDisplayText("."));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void plusButton()
     {
         Button plusButton = this.findViewById(R.id.plus_Button);
         plusButton.setOnClickListener(v ->
                 this.updateDisplayText("+"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void minusButton()
     {
         Button minusButton = this.findViewById(R.id.minus_Button);
         minusButton.setOnClickListener(v ->
                 this.updateDisplayText("-"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void multiplyButton()
     {
         Button multiplyButton = this.findViewById(R.id.multiply_Button);
         multiplyButton.setOnClickListener(v ->
                 this.updateDisplayText("×"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void divideButton()
     {
         Button divideButton = this.findViewById(R.id.divide_Button);
         divideButton.setOnClickListener(v ->
                 this.updateDisplayText("÷"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void indexButton()
     {
         Button indexButton = this.findViewById(R.id.index_Button);
         indexButton.setOnClickListener(v ->
                 this.updateDisplayText("^"));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void bracketsButton()
     {
@@ -217,6 +266,7 @@ public class MainActivity extends AppCompatActivity
 
             // Updates the cursor position so that it doesn't remain to the left of the input
 
+            MainActivity.calculationJustHappened = false;
 
         });
     }
@@ -225,6 +275,37 @@ public class MainActivity extends AppCompatActivity
         Button plusMinusButton = this.findViewById(R.id.plus_minus_Button);
         plusMinusButton.setOnClickListener(v ->
         {
+            if (!MainActivity.calculationJustHappened)
+            {
+                this.equalsButton();
+            }
+
+            String displayString = this.display.getText().toString();
+            Expression expression = new Expression(displayString);
+
+            String resultString = String.valueOf(expression.calculate());
+
+            if (!resultString.equals("NaN")) // NaN stands for Not a Number
+            {
+                double resultDouble = Double.parseDouble(resultString);
+                resultDouble = resultDouble * -1;
+
+                resultString = resultDouble + "";
+
+                if (resultString.endsWith(".0"))
+                {
+                    resultString = resultString.substring(0, resultString.length() -2);
+                }
+
+            }
+
+            this.display.setText(resultString);
+
+            this.display.setSelection(resultString.length());
+
+            // Updates the cursor position so that it is to the right of resultString
+
+            MainActivity.calculationJustHappened = true;
 
         });
     }
@@ -236,18 +317,20 @@ public class MainActivity extends AppCompatActivity
             String displayString = this.display.getText().toString();
             Expression expression = new Expression(displayString);
 
-            String result = String.valueOf(expression.calculate());
+            String resultString = String.valueOf(expression.calculate());
 
-            if (result.endsWith(".0"))
+            if (resultString.endsWith(".0"))
             {
-                result = result.substring(0, result.length() -2);
+                resultString = resultString.substring(0, resultString.length() -2);
             }
 
-            this.display.setText(result);
+            this.display.setText(resultString);
 
-            this.display.setSelection(result.length());
+            this.display.setSelection(resultString.length());
 
-            // Updates the cursor position so that it is to the right of the result
+            // Updates the cursor position so that it is to the right of resultString
+
+            MainActivity.calculationJustHappened = true;
 
         });
     }
@@ -256,6 +339,9 @@ public class MainActivity extends AppCompatActivity
         Button clearButton = this.findViewById(R.id.clear_Button);
         clearButton.setOnClickListener(v ->
                 this.display.setText(""));
+
+        MainActivity.calculationJustHappened = false;
+
     }
     public void backspaceButton()
     {
@@ -278,6 +364,8 @@ public class MainActivity extends AppCompatActivity
                 // of the rightmost symbol in the display after the backspaceButton method
                 // is executed, so further calls of the backspaceButton method would do nothing
                 // until the cursor is right beside a symbol again.
+
+                MainActivity.calculationJustHappened = false;
 
             }
         });
