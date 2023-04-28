@@ -1,4 +1,4 @@
-package com.example.elementarycalculator;
+package com.example.calculator;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -9,11 +9,9 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.calculator.R;
-
 import org.mariuszgromada.math.mxparser.Expression;
 
-public class MainActivity extends AppCompatActivity
+public class CalculatorActivity extends AppCompatActivity
 {
     private static boolean calculationJustHappened = false;
     private EditText display;
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_calculator);
 
         this.display = this.findViewById(R.id.display_EditText);
 
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         zeroButton.setOnClickListener(v ->
                 this.updateDisplayText("0"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void oneButton()
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity
         oneButton.setOnClickListener(v ->
                 this.updateDisplayText("1"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void twoButton()
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         twoButton.setOnClickListener(v ->
                 this.updateDisplayText("2"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void threeButton()
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         threeButton.setOnClickListener(v ->
                 this.updateDisplayText("3"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void fourButton()
@@ -119,7 +117,7 @@ public class MainActivity extends AppCompatActivity
         fourButton.setOnClickListener(v ->
                 this.updateDisplayText("4"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void fiveButton()
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         fiveButton.setOnClickListener(v ->
                 this.updateDisplayText("5"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void sixButton()
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity
         sixButton.setOnClickListener(v ->
                 this.updateDisplayText("6"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void sevenButton()
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         sevenButton.setOnClickListener(v ->
                 this.updateDisplayText("7"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void eightButton()
@@ -155,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         eightButton.setOnClickListener(v ->
                 this.updateDisplayText("8"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void nineButton()
@@ -164,7 +162,7 @@ public class MainActivity extends AppCompatActivity
         nineButton.setOnClickListener(v ->
                 this.updateDisplayText("9"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void decimalPointButton()
@@ -173,7 +171,7 @@ public class MainActivity extends AppCompatActivity
         decimalPointButton.setOnClickListener(v ->
                 this.updateDisplayText("."));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void plusButton()
@@ -182,7 +180,7 @@ public class MainActivity extends AppCompatActivity
         plusButton.setOnClickListener(v ->
                 this.updateDisplayText("+"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void minusButton()
@@ -191,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         minusButton.setOnClickListener(v ->
                 this.updateDisplayText("-"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void multiplyButton()
@@ -200,7 +198,7 @@ public class MainActivity extends AppCompatActivity
         multiplyButton.setOnClickListener(v ->
                 this.updateDisplayText("×"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void divideButton()
@@ -209,7 +207,7 @@ public class MainActivity extends AppCompatActivity
         divideButton.setOnClickListener(v ->
                 this.updateDisplayText("÷"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void indexButton()
@@ -218,7 +216,7 @@ public class MainActivity extends AppCompatActivity
         indexButton.setOnClickListener(v ->
                 this.updateDisplayText("^"));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void bracketsButton()
@@ -266,7 +264,7 @@ public class MainActivity extends AppCompatActivity
 
             // Updates the cursor position so that it doesn't remain to the left of the input
 
-            MainActivity.calculationJustHappened = false;
+            CalculatorActivity.calculationJustHappened = false;
 
         });
     }
@@ -275,7 +273,7 @@ public class MainActivity extends AppCompatActivity
         Button plusMinusButton = this.findViewById(R.id.plus_minus_Button);
         plusMinusButton.setOnClickListener(v ->
         {
-            if (!MainActivity.calculationJustHappened)
+            if (!CalculatorActivity.calculationJustHappened)
             {
                 this.equalsButton();
             }
@@ -305,7 +303,7 @@ public class MainActivity extends AppCompatActivity
 
             // Updates the cursor position so that it is to the right of resultString
 
-            MainActivity.calculationJustHappened = true;
+            CalculatorActivity.calculationJustHappened = true;
 
         });
     }
@@ -330,7 +328,7 @@ public class MainActivity extends AppCompatActivity
 
             // Updates the cursor position so that it is to the right of resultString
 
-            MainActivity.calculationJustHappened = true;
+            CalculatorActivity.calculationJustHappened = true;
 
         });
     }
@@ -340,7 +338,7 @@ public class MainActivity extends AppCompatActivity
         clearButton.setOnClickListener(v ->
                 this.display.setText(""));
 
-        MainActivity.calculationJustHappened = false;
+        CalculatorActivity.calculationJustHappened = false;
 
     }
     public void backspaceButton()
@@ -365,7 +363,7 @@ public class MainActivity extends AppCompatActivity
                 // is executed, so further calls of the backspaceButton method would do nothing
                 // until the cursor is right beside a symbol again.
 
-                MainActivity.calculationJustHappened = false;
+                CalculatorActivity.calculationJustHappened = false;
 
             }
         });

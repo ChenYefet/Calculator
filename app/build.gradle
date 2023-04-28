@@ -4,7 +4,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.example.elementarycalculator"
+        applicationId "com.example.calculator"
         minSdkVersion 16
         targetSdkVersion 33
         versionCode 1
@@ -19,7 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.example.elementarycalculator'
+    namespace 'com.example.calculator'
 }
 
 dependencies {
