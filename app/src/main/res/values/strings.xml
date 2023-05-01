@@ -23,7 +23,7 @@
     <string name="decimal_point">.</string>
     <string name="equals">=</string>
 
-    <string name="backspace"> </string>
+    <string name="backspace">backspace</string>
 
     <string name="display_hint">Enter in a value</string>
 
