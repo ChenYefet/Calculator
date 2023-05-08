@@ -10,6 +10,7 @@
 * [Known bugs](#known-bugs)
 * [Find a bug?](#find-a-bug)
 * [Credits](#credits)
+* [License](#license)
 
 ## Languages
 Java 8
@@ -54,3 +55,6 @@ If you found an issue or would like to submit an improvement to this project, pl
 
 ## Credits
 This app is inspired by a tutorial from the YouTube channel [Practical Coding](https://www.youtube.com/watch?v=B5b-7uDtUp4&list=PLcSIMAULmMyd-d2gp50C-fPfnzCB523mZ&index=6).
+
+## License
+This app is licensed under the [MIT License](https://github.com/ChenYefet/Calculator/blob/master/LICENSE).
