@@ -31,7 +31,7 @@ import org.mariuszgromada.math.mxparser.Expression;
  */
 public class CalculatorActivity extends AppCompatActivity
 {
-    private static boolean calculationJustHappened = false;
+    private static boolean calculationJustHappened = false; // Kept in for future use
     private EditText display;
 
     /**
@@ -368,17 +368,16 @@ public class CalculatorActivity extends AppCompatActivity
         bracketsButton.setOnClickListener(v ->
         {
             String displayString = this.display.getText().toString();
-            int displayLength = this.display.getText().length();
-            String lastSymbol = "";
-            if (displayLength > 0)
-            {
-                lastSymbol = displayString.substring(displayLength - 1, displayLength);
-            }
-
+            int displayStringLength = this.display.getText().length();
+            String symbolToTheLeftOfCursorPosition = "";
             int cursorPosition = this.display.getSelectionStart();
-
             int countOfOpenBracketsToTheLeftOfCursorPosition = 0;
             int countOfClosedBracketsToTheLeftOfCursorPosition = 0;
+
+            if (displayStringLength > 0)
+            {
+                symbolToTheLeftOfCursorPosition = displayString.substring(displayStringLength - 1, displayStringLength);
+            }
 
             // Counts all the open and closed brackets that are to the left of the cursor position
             for (int currentSymbolPosition = 0; currentSymbolPosition < cursorPosition; currentSymbolPosition++)
@@ -396,7 +395,7 @@ public class CalculatorActivity extends AppCompatActivity
             }
 
             // Updates the display by entering the appropriate bracket at the cursor position
-            if (countOfOpenBracketsToTheLeftOfCursorPosition == countOfClosedBracketsToTheLeftOfCursorPosition || lastSymbol.equals("("))
+            if (countOfOpenBracketsToTheLeftOfCursorPosition == countOfClosedBracketsToTheLeftOfCursorPosition || symbolToTheLeftOfCursorPosition.equals("("))
             {
                 this.updateDisplayText("(");
             }
@@ -424,28 +423,19 @@ public class CalculatorActivity extends AppCompatActivity
         Button plusMinusButton = this.findViewById(R.id.plus_minus_Button);
         plusMinusButton.setOnClickListener(v ->
         {
-            if (!CalculatorActivity.calculationJustHappened)
-            {
-                this.equalsButton();
-            }
-
             String displayString = this.display.getText().toString();
             Expression expression = new Expression(displayString);
-
             String resultString = String.valueOf(expression.calculate());
+            double resultDouble = Double.parseDouble(resultString);
 
-            if (!resultString.equals("NaN")) // NaN stands for Not a Number
+            resultDouble = resultDouble * -1;
+            resultString = resultDouble + "";
+
+            // Removes the '.0' at the end of resultString.
+            // Integers of type double end with '.0' to indicate that they are floating-point numbers.
+            if (resultString.endsWith(".0"))
             {
-                double resultDouble = Double.parseDouble(resultString);
-                resultDouble = resultDouble * -1;
-
-                resultString = resultDouble + "";
-
-                if (resultString.endsWith(".0"))
-                {
-                    resultString = resultString.substring(0, resultString.length() -2);
-                }
-
+                resultString = resultString.substring(0, resultString.length() -2);
             }
 
             this.display.setText(resultString);
@@ -471,10 +461,10 @@ public class CalculatorActivity extends AppCompatActivity
         {
             String displayString = this.display.getText().toString();
             Expression expression = new Expression(displayString);
-
             String resultString = String.valueOf(expression.calculate());
 
-            // Removes the '.0' after an integer
+            // Removes the '.0' at the end of resultString.
+            // Integers of type double end with '.0' to indicate that they are floating-point numbers.
             if (resultString.endsWith(".0"))
             {
                 resultString = resultString.substring(0, resultString.length() -2);
