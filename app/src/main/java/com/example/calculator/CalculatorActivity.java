@@ -128,6 +128,19 @@ public class CalculatorActivity extends AppCompatActivity
     }
 
     /**
+     * Helper method for the equalsButton() and plusMinusButton() methods.
+     * It evaluates the expression by calling the calculate() method on an Expression object,
+     * and returns a string value of its result.
+     * Both the calculate() method and the Expression object are from the mXparser library.
+     */
+    public String calculateExpression()
+    {
+        String displayString = this.display.getText().toString();
+        Expression expression = new Expression(displayString);
+        return String.valueOf(expression.calculate());
+    }
+
+    /**
      * Sets up the zero button's click listener
      * which updates the display by entering '0' at the cursor position
      */
@@ -414,18 +427,14 @@ public class CalculatorActivity extends AppCompatActivity
 
     /**
      * Sets up the plus-minus button's click listener
-     * which sets the display to the product of the expression that it contains and -1.
-     * It evaluates the expression by calling the calculate() method on an Expression object,
-     * both of which are from the mXparser library.
+     * which sets the display to the product of the expression that it contains and -1
      */
     public void plusMinusButton()
     {
         Button plusMinusButton = this.findViewById(R.id.plus_minus_Button);
         plusMinusButton.setOnClickListener(v ->
         {
-            String displayString = this.display.getText().toString();
-            Expression expression = new Expression(displayString);
-            String resultString = String.valueOf(expression.calculate());
+            String resultString = this.calculateExpression();
             double resultDouble = Double.parseDouble(resultString);
 
             resultDouble = resultDouble * -1;
@@ -450,18 +459,14 @@ public class CalculatorActivity extends AppCompatActivity
 
     /**
      * Sets up the equals button's click listener
-     * which sets the display to the evaluation of the expression that it contains.
-     * It evaluates the expression by calling the calculate() method on an Expression object,
-     * both of which are from the mXparser library.
+     * which sets the display to the evaluation of the expression that it contains
      */
     public void equalsButton()
     {
         Button equalsButton = this.findViewById(R.id.equals_Button);
         equalsButton.setOnClickListener(v ->
         {
-            String displayString = this.display.getText().toString();
-            Expression expression = new Expression(displayString);
-            String resultString = String.valueOf(expression.calculate());
+            String resultString = this.calculateExpression();
 
             // Removes the '.0' at the end of resultString.
             // Integers of type double end with '.0' to indicate that they are floating-point numbers.
