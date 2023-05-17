@@ -370,10 +370,10 @@ public class CalculatorActivity extends AppCompatActivity
      * depending on which is more appropriate:
      * It enters '(' at the cursor position
      * when there are an equal amount of open and closed brackets to the left of the cursor position
-     * or when the symbol to the left of the cursor position is '(',
+     * or when the symbol to the left of the cursor position is either '(' or '^',
      * but enters ')' at the cursor position
      * when there are less closed brackets than open brackets to the left of the cursor position
-     * given that the symbol to the left of the cursor position is not '('.
+     * given that the symbol to the left of the cursor position is not '(' or '^'.
      */
     public void bracketsButton()
     {
@@ -408,7 +408,7 @@ public class CalculatorActivity extends AppCompatActivity
             }
 
             // Updates the display by entering the appropriate bracket at the cursor position
-            if (countOfOpenBracketsToTheLeftOfCursorPosition == countOfClosedBracketsToTheLeftOfCursorPosition || symbolToTheLeftOfCursorPosition.equals("("))
+            if (countOfOpenBracketsToTheLeftOfCursorPosition == countOfClosedBracketsToTheLeftOfCursorPosition || symbolToTheLeftOfCursorPosition.equals("(") || symbolToTheLeftOfCursorPosition.equals("^") || symbolToTheLeftOfCursorPosition.equals("+") || symbolToTheLeftOfCursorPosition.equals("-") || symbolToTheLeftOfCursorPosition.equals("×") || symbolToTheLeftOfCursorPosition.equals("÷"))
             {
                 this.updateDisplayText("(");
             }
