@@ -48,13 +48,16 @@ This app does not have any specific hardware requirements. It can run on any sys
 * Run the program and start performing calculations!
 
 ## Known bugs
-One issue I have found while using the calculator is that it evaluates `-x^2` to `x^2` for any value of `x`. For example, it would evaluate `-3^2` to `9` when in fact it is `-9`. If there are brackets around `x`, it evaluates it correctly. For example, it evaluates `-(3)^2` correctly to `-9`.
+* One issue I have found while using the calculator is that it evaluates `-x^n` to `x^n` when both `x` is positive and `n` is even. For example, it would evaluate `-3^2` to `9` when in fact it is `-9`. If there are brackets around `x`, it evaluates it correctly. For example, it evaluates `-(3)^2` correctly to `-9`.
+* Another issue I have found while using the calculator is that it considers `-x^n` to not be a number when both `x` is positive and `n` is a decimal number. For example, it evaluates `-9^0.5` as `NaN` (which stands for 'Not a Number') when in fact it is `-3`. If there are brackets around `x`, it evaluates correctly. For example, it evaluates `-(9)^0.5` correctly to `-3`.
 
 ## Find a bug?
 If you found an issue or would like to submit an improvement to this project, please submit an issue using the 'Issues' tab above. If you would like to submit a pull request, please reference the issue you created.
 
 ## Credits
-This app is inspired by a tutorial from the YouTube channel [Practical Coding](https://www.youtube.com/watch?v=B5b-7uDtUp4&list=PLcSIMAULmMyd-d2gp50C-fPfnzCB523mZ&index=6).
+This app is inspired by the following tutorials:
+* [Bill Butterfield](https://www.youtube.com/watch?v=dFlPARW5IX8&list=PLp9HFLVct_ZvMa7IVdQyUUyh8t2re9apm)
+* [Practical Coding](https://www.youtube.com/watch?v=B5b-7uDtUp4&list=PLcSIMAULmMyd6p8lSBtOoC_TutRMsnZOc)
 
 ## License
 This app is licensed under the [MIT License](https://github.com/ChenYefet/Calculator/blob/master/LICENSE).
